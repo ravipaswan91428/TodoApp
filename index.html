@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What to do</title>
+    <style>
+        /* page background and default text color */
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, ul, button{
+            font-size: 20px;
+        }
+
+        input{
+            width: 350px;
+        }
+
+        input, button{
+            border-radius: 30px;
+            padding: 20px;
+        }
+
+        ol li{
+            background-color: rgb(29, 29, 29);
+            gap: 10px;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        ol li button{
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 1px;
+            margin: 10px;
+        }
+
+        button{
+            background-color: rgb(25, 136, 201);
+            color: white;
+        }
+        button:hover{
+            background-color: rgb(0, 162, 255);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input
+        id="todolist"
+        type="text"
+        placeholder="Work you want to do"
+        >
+
+        <button onclick="addtask()">Add Task</button>
+    </div>
+
+    <div>
+        <ol id="addtasklist"></ol>
+    </div>
+
+    <script>
+        function addtask(){
+            let tasklist = document.getElementById("todolist");
+            let taskvalue = tasklist.value;
+
+            let li = document.createElement("li");
+            li.innerHTML = `${taskvalue}
+            <button onclick="removeTask(this)">X</button>`;
+
+            document.getElementById("addtasklist").appendChild(li);
+            tasklist.value = "";
+        }
+        function removeTask(button){
+            let li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>
